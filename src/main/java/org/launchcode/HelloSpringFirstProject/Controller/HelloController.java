@@ -1,10 +1,7 @@
 package org.launchcode.HelloSpringFirstProject.Controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class HelloController {
@@ -21,5 +18,12 @@ public class HelloController {
     @RequestMapping(value = "goodbye",method = {RequestMethod.GET,RequestMethod.POST})
     public String goodBye(){
         return "Good Bye,Spring";
+    }
+
+
+    @ResponseBody
+    @GetMapping("hello1")
+    public String helloWithQueryParam(@RequestParam  String name){
+        return "hello " + name + "!";
     }
 }
