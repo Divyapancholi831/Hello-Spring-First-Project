@@ -26,4 +26,11 @@ public class HelloController {
     public String helloWithQueryParam(@RequestParam  String name){
         return "hello " + name + "!";
     }
+
+    //example for path parameter.
+    @ResponseBody
+    @GetMapping("hello/{name}")
+    public String helloWithPathParam(@PathVariable String name){
+        return "hello " + name + "!";
+    }
 }
