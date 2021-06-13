@@ -22,7 +22,7 @@ public class HelloController {
 
 
     @ResponseBody
-    @GetMapping("hello1")
+    @RequestMapping(value="hello1",method = {RequestMethod.GET,RequestMethod.POST})
     public String helloWithQueryParam(@RequestParam  String name){
         return "hello " + name + "!";
     }
@@ -32,5 +32,19 @@ public class HelloController {
     @GetMapping("hello/{name}")
     public String helloWithPathParam(@PathVariable String name){
         return "hello " + name + "!";
+    }
+
+    //form
+    @GetMapping("form")
+    @ResponseBody
+    public String helloWithForms(){
+        return "<html>" +
+                "<body>"+
+                "<form action='hello1' method='post'>"+
+                "<input type='text' name='name'/>" +
+                "<input type='submit' value='Greet Me !'/>"+
+                "</form>"+
+                 "</body>"+
+                "</html>";
     }
 }
