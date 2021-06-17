@@ -82,7 +82,7 @@ public class HelloController {
         else if(l.equals("german")){
             greeting="Hallo";
         }
-    return greeting + "" + n;
+    return greeting + " " + n;
 
     }
 }
