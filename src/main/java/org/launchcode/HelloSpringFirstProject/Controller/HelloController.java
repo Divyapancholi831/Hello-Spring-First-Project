@@ -8,8 +8,20 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("hello")
 public class HelloController {
 
+
     public String hello(){
         return "Hello, Spring!";
+    }
+
+
+    @RequestMapping(value = "hello2",method = {RequestMethod.POST,RequestMethod.GET})
+    public String helloPost(@RequestParam String name,@RequestParam String language){
+        if(name==null)
+        {
+            name="world";
+        }
+        return createMessage(name,language);
+
     }
 
     //@GetMapping("goodbye")
@@ -39,11 +51,38 @@ public class HelloController {
     public String helloWithForms(){
         return "<html>" +
                 "<body>"+
-                "<form action='hello1' method='post'>"+
+                "<form action='hello2' method='get'>"+
                 "<input type='text' name='name'/>" +
+                "<select name='language' id='select_language'>" +
+                "<option value='english'>English</option>" +
+                "<option value='french'>French</option>" +
+                "<option value='spanish'>Spanish</option>" +
+                "<option value='hindi'>Hindi</option>" +
+                "<option value='german'>German</option>" +
+                "</select>"+
                 "<input type='submit' value='Greet Me !'/>"+
                 "</form>"+
                  "</body>"+
                 "</html>";
+    }
+    public static String createMessage(String n,String l){
+        String greeting = "";
+        if(l.equals("english")){
+            greeting="Hello";
+        }
+        else if(l.equals("french")){
+            greeting="Bonjour";
+        }
+        else if(l.equals("spanish")){
+            greeting="HoLa";
+        }
+        else if(l.equals("hindi")){
+            greeting="Namaste";
+        }
+        else if(l.equals("german")){
+            greeting="Hallo";
+        }
+    return greeting + "" + n;
+
     }
 }
